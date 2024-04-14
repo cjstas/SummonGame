@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://b51xqlqarq4x0"]
+
+[ext_resource type="Script" path="res://svc/player/cookingHUD/cookingHUD.gd" id="1_cu6kv"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_cu6kv")
+
+[node name="GremlinLabel" type="Label" parent="."]
+z_index = 10
+offset_left = 912.0
+offset_top = 26.0
+offset_right = 1151.0
+offset_bottom = 49.0
+text = "Raw Gremlins:
+"
+autowrap_mode = 1
+
+[node name="Timer" type="Label" parent="."]
+offset_left = 545.0
+offset_top = 11.0
+offset_right = 609.0
+offset_bottom = 34.0
+text = "0:00
+"
+
+[node name="Money" type="Label" parent="."]
+offset_left = 966.0
+offset_top = 8.0
+offset_right = 1028.0
+offset_bottom = 31.0
+text = "Money: "

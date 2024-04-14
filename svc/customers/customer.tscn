@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ngmii8oo8iev"]
+
+[ext_resource type="Texture2D" uid="uid://dd76ilr8rrbe2" path="res://assets/customers/customer.png" id="1_qkmq5"]
+[ext_resource type="Script" path="res://svc/customers/customer.gd" id="1_qtxi7"]
+[ext_resource type="Texture2D" uid="uid://b7mxtnkv2m7an" path="res://assets/customers/ThoughtCloud.png" id="3_o2tud"]
+[ext_resource type="Texture2D" uid="uid://42my32s8c15r" path="res://assets/enemies/enemy.png" id="4_2yiv1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0dh6"]
+radius = 8.0
+
+[node name="Customer" type="CharacterBody2D"]
+z_index = 6
+script = ExtResource("1_qtxi7")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 6
+position = Vector2(0, -27)
+texture = ExtResource("1_qkmq5")
+
+[node name="SpawnMarker" type="Marker2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -35)
+shape = SubResource("CircleShape2D_k0dh6")
+
+[node name="ThoughtCloud" type="Sprite2D" parent="."]
+z_index = 6
+position = Vector2(-38, -62)
+scale = Vector2(0.523438, 0.523438)
+texture = ExtResource("3_o2tud")
+
+[node name="Dish" type="Sprite2D" parent="ThoughtCloud"]
+z_index = 7
+position = Vector2(-7.64179, -9.55225)
+texture = ExtResource("4_2yiv1")

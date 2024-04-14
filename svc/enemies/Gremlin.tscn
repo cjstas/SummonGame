@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjojy810ll0vf"]
+
+[ext_resource type="Script" path="res://svc/enemies/Gremlin.gd" id="1_6a116"]
+[ext_resource type="Texture2D" uid="uid://42my32s8c15r" path="res://assets/enemies/enemy.png" id="1_atqfk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dyx51"]
+size = Vector2(30, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d588m"]
+size = Vector2(32, 32)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_6a116")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dyx51")
+
+[node name="Enemy" type="Sprite2D" parent="."]
+z_index = 5
+texture = ExtResource("1_atqfk")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_d588m")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

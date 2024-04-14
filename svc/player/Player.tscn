@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbkrj35bgdpqj"]
+
+[ext_resource type="Script" path="res://svc/player/Player.gd" id="1_3dqmo"]
+[ext_resource type="Texture2D" uid="uid://cnary6wqgh7g" path="res://assets/player/Player.png" id="1_22p15"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_as0ck"]
+size = Vector2(32, 32)
+
+[node name="PlayerCharacter" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_3dqmo")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+z_index = 5
+texture = ExtResource("1_22p15")
+
+[node name="PlayerShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_as0ck")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(16, 0)

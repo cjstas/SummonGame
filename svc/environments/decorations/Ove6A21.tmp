@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://s5bv882dxrc7"]
+
+[ext_resource type="Script" path="res://svc/environments/decorations/Oven.gd" id="1_bqoxk"]
+[ext_resource type="Texture2D" uid="uid://crh3t73gjw7tn" path="res://assets/environments/decorations/Oven/Oven.png" id="1_qq8s0"]
+[ext_resource type="PackedScene" uid="uid://dc123osij0sdy" path="res://svc/dishes/gremlinRoast.tscn" id="2_ndm1d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ks7yp"]
+radius = 25.0
+height = 80.0
+
+[node name="Oven" type="Area2D"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_bqoxk")
+gremlinRoast = ExtResource("2_ndm1d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 100
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_ks7yp")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 4
+position = Vector2(-1, 0)
+texture = ExtResource("1_qq8s0")
+hframes = 2
+vframes = 2
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Countdown" type="Label" parent="."]
+z_index = 10
+offset_left = -10.0
+offset_top = -48.0
+offset_right = 30.0
+offset_bottom = -25.0
+text = "00"
+
+[node name="DishSpawn" type="Marker2D" parent="."]
+position = Vector2(0, 9)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

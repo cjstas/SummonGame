@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1q8n4fifxggm"]
+
+[ext_resource type="Script" path="res://svc/customers/Portals/Main_Customer_Portal.gd" id="1_w3xss"]
+[ext_resource type="PackedScene" uid="uid://tgqywgyvn1jk" path="res://svc/environments/decorations/table.tscn" id="2_m881s"]
+[ext_resource type="Texture2D" uid="uid://3dvyq5ccqrld" path="res://assets/enemies/Portals/Portal.png" id="2_q22e0"]
+
+[node name="MainCustomerPortal" type="Node2D"]
+script = ExtResource("1_w3xss")
+Table = ExtResource("2_m881s")
+spawnRadius = 250
+
+[node name="Portal" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("2_q22e0")
+
+[node name="SpawnLocation" type="Marker2D" parent="."]
