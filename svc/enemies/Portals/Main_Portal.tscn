@@ -1,15 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://4eugf8u5y51c"]
+[gd_scene load_steps=6 format=3 uid="uid://4eugf8u5y51c"]
 
 [ext_resource type="Texture2D" uid="uid://3dvyq5ccqrld" path="res://assets/enemies/Portals/Portal.png" id="1_eut3q"]
 [ext_resource type="Script" path="res://svc/enemies/Portals/Main_Portal.gd" id="1_o0vav"]
-[ext_resource type="PackedScene" uid="uid://bjojy810ll0vf" path="res://svc/enemies/Gremlin.tscn" id="2_djdgq"]
+[ext_resource type="PackedScene" uid="uid://cjws3dsulcveg" path="res://svc/enemies/Portals/Gremlin_Portal.tscn" id="2_17sik"]
+[ext_resource type="PackedScene" uid="uid://cdx2ym8gtl3ly" path="res://svc/effects/portalEffect.tscn" id="4_576f7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hd4wd"]
+radius = 44.0
 
 [node name="MainPortal" type="Node2D"]
 script = ExtResource("1_o0vav")
-Enemy = ExtResource("2_djdgq")
+subPortal = ExtResource("2_17sik")
+spawnRadius = 250
 
 [node name="Portal" type="Sprite2D" parent="."]
 z_index = 2
+scale = Vector2(4, 4)
 texture = ExtResource("1_eut3q")
 
 [node name="SpawnLocation" type="Marker2D" parent="."]
+
+[node name="PortalEffect" parent="." instance=ExtResource("4_576f7")]
+visible = false
+scale = Vector2(3.63939, 1.61902)
+
+[node name="SpawnTrigger" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnTrigger"]
+shape = SubResource("CircleShape2D_hd4wd")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="area_entered" from="SpawnTrigger" to="." method="_on_spawn_trigger_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

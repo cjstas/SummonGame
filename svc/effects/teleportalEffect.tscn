@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg4o7glebm150"]
+
+[ext_resource type="Texture2D" uid="uid://d3d052xwwyfi6" path="res://assets/effects/star particle.png" id="1_ur78x"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w4qb4"]
+lifetime_randomness = 0.08
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 100.0
+emission_ring_radius = 100.0
+emission_ring_inner_radius = 100.0
+angular_velocity_max = 500.0
+orbit_velocity_min = 0.25
+orbit_velocity_max = 0.5
+radial_velocity_min = -100.0
+radial_velocity_max = -100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.5
+hue_variation_max = 0.1
+anim_speed_min = -1.0
+anim_speed_max = -1.0
+
+[node name="TeleportalEffect" type="GPUParticles2D"]
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_w4qb4")
+texture = ExtResource("1_ur78x")

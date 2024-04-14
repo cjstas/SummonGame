@@ -1,28 +1,37 @@
 extends CharacterBody2D
 
 #constants
-const speed = 150.0
 const damage = 1;
 
 #variables
 var target;
 var root;
+var speed = 200.0
 
 var maxHealth = 2;
 var health;
 
 func _enter_tree():
-	target_closest_player()
+	SignalController.find_player.emit(Callable(self, "target_player_if_closer"))
 	health = maxHealth;
 	SignalController.enemy_damage.connect(_on_hit)
-	
+	#Add some random variance for speed
+	speed = speed * randf_range(0.75, 1.5)
 
-func _physics_process(delta):
+func _ready():
+	$Enemy.play("run")
+
+func _process(_delta):
 	if !target:
-		#target_closest_player()
+		SignalController.find_player.emit(Callable(self, "target_player_if_closer"))
+		return
+
+func _physics_process(_delta):
+	if !is_instance_valid(target): #I hate that we have to do this
 		return
 	#look at player
-	look_at(target.global_position)
+	if target:
+		look_at(target.global_position)
 	
 	#move towards player
 	velocity = speed * global_position.direction_to(target.global_position)
@@ -30,18 +39,12 @@ func _physics_process(delta):
 
 #Functions
 
-func target_closest_player():
-	var closestDistance = INF
-	var closestChild;
-	
-	for child in get_parent().get_children():
-		if child.is_in_group("Player"):
-			var distance = self.global_position.distance_to(child.global_position)
-			if distance < closestDistance:
-					closestChild = child
-					closestDistance = distance
-	
-	target = closestChild
+func target_player_if_closer(player):
+	if !target:
+		target = player
+		return
+	if self.global_position.distance_to(player.global_position) < self.global_position.distance_to(target.global_position):
+		target = player
 
 func generate_Loot():
 	if GlobalVariables.materials.has('GremlinMats'):

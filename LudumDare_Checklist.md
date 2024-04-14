@@ -26,20 +26,35 @@ Ludum Dare Plan
 ~~Phase 1 completed. A 'game' has been created~~
 
 Notes for improvements
- [ ] enemies should spawn in random locations
-	[ ] in order for this to feel fair, a summon indicator needs to be created in advance to show where they are spawning
- [ ] variance in enemy speed to make some more threatening
- [ ] graphic and proper hitbox for player
-	[ ] visual indicators for hurt, iframes, etc
- [ ] graphic and proper hitbox for enemy
- [ ] limit on player shoot ability (cooldown)
+ [x] enemies should spawn in random locations
+	[x] in order for this to feel fair, a summon indicator needs to be created in advance to show where they are spawning
+ [x] variance in enemy speed to make some more threatening
+ [x] graphic and proper hitbox for player
+ [x] graphic and proper hitbox for enemy
+ [x] limit on player shoot ability (cooldown)
  
  [ ] Dodge system
 	[ ] Start position + angle + time = animation lock
 		[ ] Should be able to utilize the iFrame system or the invincibility system easily for this
- [ ] portal should be disabled at the start along with the timer. upon interacting or shooting the portal, it will activate and kick off the timer
- [ ] transition scene (fade in & fade out) for scene transitions so that its not so jarring
+ [x] portal should be disabled at the start along with the timer. upon interacting or shooting the portal, it will activate and kick off the timer
+ [x] transition scene (fade in & fade out) for scene transitions so that its not so jarring
+	 [x] Instead of this, I opted to give the player a teleporter so that they can better pace and give them a chance to catch their breath
+ [ ] Improve HUD
+	 [x] Fix scaling issues
+	 [ ] Build an actually good looking graphic for the hud
+		[x] Im bad at this
 
+ [ ] The selling section sucks right now improve it
+	 [x] Make tables and customers bigger
+	 [x] Move the teleportal to another room so that the player can leave at any time
+		 [x] Remove the Timer
+		 [x] Make the portal toggleable
+			 [x] Make turning off the portal banish all customers
+			 [ ] Make the customer math happen upon toggling the portal (not room navigation or otherwise)
+	 [ ] Set a spawn limit for tables (maybe 10?)
+	 [ ] Make the room that customers spawn in more friendly to navigate (try some designs to make the ovens closer)
+	 [ ] Make ovens act like tables (interact with a full oven instead of just spawning the dish inside it)
+	 [ ] 
 
 ~~Phase 2 Finishing the Features~~
 
@@ -54,6 +69,7 @@ Notes for improvements
 		[ ] Summon more guys
 	 [ ] Add definitions for the rounds for this (increasing difficulty)
 		 [ ] Have a 'difficulty value that increases exponentially and controls how many and what enemies spawn
+	 [ ] visual indicators for hurt, iframes, etc
 
 	Non Action Section
 	 [ ] 3 More resources

@@ -1,16 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1q8n4fifxggm"]
+[gd_scene load_steps=6 format=3 uid="uid://b1q8n4fifxggm"]
 
 [ext_resource type="Script" path="res://svc/customers/Portals/Main_Customer_Portal.gd" id="1_w3xss"]
 [ext_resource type="PackedScene" uid="uid://tgqywgyvn1jk" path="res://svc/environments/decorations/table.tscn" id="2_m881s"]
 [ext_resource type="Texture2D" uid="uid://3dvyq5ccqrld" path="res://assets/enemies/Portals/Portal.png" id="2_q22e0"]
+[ext_resource type="PackedScene" uid="uid://dvak3p8otgtw8" path="res://svc/effects/customerPortalEffect.tscn" id="4_ixqfm"]
 
-[node name="MainCustomerPortal" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_fjol6"]
+radius = 128.016
+
+[node name="MainCustomerPortal" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_w3xss")
 Table = ExtResource("2_m881s")
 spawnRadius = 250
 
 [node name="Portal" type="Sprite2D" parent="."]
 z_index = 2
+scale = Vector2(4, 4)
 texture = ExtResource("2_q22e0")
 
 [node name="SpawnLocation" type="Marker2D" parent="."]
+scale = Vector2(4, 4)
+
+[node name="PortalEffect" parent="." instance=ExtResource("4_ixqfm")]
+z_index = 6
+position = Vector2(0, 0)
+scale = Vector2(3.6, 1.619)
+emitting = false
+
+[node name="InteractionArea" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fjol6")

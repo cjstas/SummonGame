@@ -12,13 +12,8 @@ func _enter_tree():
 	SignalController.oven_start.connect(_on_cooking_start)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	update_mat_text()
-	var timerInfo = int(ceil(GlobalVariables.timeLeft))
-	seconds = timerInfo % 60
-	timerInfo -= seconds
-	minutes = timerInfo / 60
-	$Timer.text = str(minutes, ":", seconds)
 
 func update_mat_text():
 	$Money.text = str("Money: $", 
@@ -29,5 +24,5 @@ func update_mat_text():
 
 #Events
 
-func _on_cooking_start(lootCost):
+func _on_cooking_start(_lootCost):
 	update_mat_text()

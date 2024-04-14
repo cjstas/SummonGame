@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 
 #Exports
-@export var speed = 200;
+@export var speed = 250;
 
 #Player Stats
 
@@ -23,16 +23,16 @@ func _ready():
 	SignalController.try_place.connect(_on_place)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if canInteract:
 		find_closest_interactable()
 		SignalController.highlight.emit(currentlyQueued, true)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var input_direction = Input.get_vector("control_left", "control_right", "control_up", "control_down")
 	velocity = input_direction * speed
 	move_and_slide()
-	look_at(get_global_mouse_position())
+	$Muzzle.look_at(get_global_mouse_position())
 
 #Functions
 
@@ -44,6 +44,10 @@ func interact():
 	SignalController.highlight.emit(currentlyQueued, false)
 	interactablesInRange.erase(currentlyQueued)
 	currentlyQueued = null
+
+func banish():
+	if (currentlyQueued.is_in_group("Banishable") if currentlyQueued else false):
+		SignalController.banish.emit(currentlyQueued)
 
 
 func find_closest_interactable():
@@ -66,14 +70,16 @@ func find_closest_interactable():
 
 func _on_pickup(target: Area2D):
 	if !heldItem and target:
-		target.reparent(self)
-		target.position = $Muzzle.position
+		target.remove_from_group("Interactable")
+		target.reparent($Muzzle/Tip)
+		target.position = $Muzzle/Tip.position
 		heldItem = target
 
 func _on_drop():
 	if heldItem:
 		heldItem.reparent(owner)
-		heldItem.global_position = $Muzzle.global_position
+		heldItem.add_to_group("Interactable") #could cause bugs later if i add fancier interactables
+		heldItem.global_position = $Muzzle/Tip.global_position
 		heldItem = null
 
 func _on_place(target):
@@ -87,6 +93,8 @@ func _on_place(target):
 func _input(event):
 	if event.is_action_pressed("interact"):
 		interact()
+	if event.is_action_pressed("banish"):
+		banish()
 
 
 func _on_interaction_radius_area_entered(area):

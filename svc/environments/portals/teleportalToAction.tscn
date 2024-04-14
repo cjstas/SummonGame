@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf4s0trs7dh1y"]
+
+[ext_resource type="Script" path="res://svc/environments/portals/teleportal.gd" id="1_ntf78"]
+[ext_resource type="PackedScene" uid="uid://dg4o7glebm150" path="res://svc/effects/teleportalEffect.tscn" id="2_hnkpv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1xp2"]
+radius = 42.2966
+
+[node name="Teleportal" type="Node2D"]
+z_index = 3
+script = ExtResource("1_ntf78")
+sceneToPortTo = "res://svc/scenes/action/action.tscn"
+
+[node name="TeleportalEffect" parent="." instance=ExtResource("2_hnkpv")]
+
+[node name="portal" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="portal"]
+shape = SubResource("CircleShape2D_b1xp2")
+
+[connection signal="body_entered" from="portal" to="." method="_on_portal_body_entered"]

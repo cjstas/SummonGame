@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://vvlwvgacv55n"]
+
+[ext_resource type="Script" path="res://svc/scenes/DeathHUD.gd" id="1_hgu16"]
+
+[sub_resource type="Theme" id="Theme_uac54"]
+Button/font_sizes/font_size = 48
+Label/font_sizes/font_size = 32
+
+[node name="DeathHud" type="CanvasLayer"]
+script = ExtResource("1_hgu16")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_uac54")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="You Died" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "You Died"
+
+[node name="Stats" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 48
+text = "Stats"
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="MoneyText" type="Label" parent="PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Money:"
+
+[node name="Money" type="Label" parent="PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "200"
+
+[node name="GremlinsText" type="Label" parent="PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Gremlins killed:"
+
+[node name="Gremlins" type="Label" parent="PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="ScoreText" type="Label" parent="PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Score:"
+
+[node name="Score" type="Label" parent="PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "5000"
+
+[node name="QuitButton" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[connection signal="ready" from="PanelContainer/VBoxContainer/GridContainer/Money" to="." method="_on_money_ready"]
+[connection signal="ready" from="PanelContainer/VBoxContainer/GridContainer/Gremlins" to="." method="_on_gremlins_ready"]
+[connection signal="ready" from="PanelContainer/VBoxContainer/GridContainer/Score" to="." method="_on_score_ready"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -7,25 +7,24 @@ script = ExtResource("1_cu6kv")
 
 [node name="GremlinLabel" type="Label" parent="."]
 z_index = 10
-offset_left = 912.0
-offset_top = 26.0
-offset_right = 1151.0
-offset_bottom = 49.0
+anchors_preset = -1
+anchor_left = 0.999
+anchor_top = 0.035
+anchor_right = 0.999
+anchor_bottom = 0.035
+offset_left = -114.848
+offset_top = 0.32
+offset_right = 0.151855
+offset_bottom = 23.32
+grow_horizontal = 0
 text = "Raw Gremlins:
-"
-autowrap_mode = 1
-
-[node name="Timer" type="Label" parent="."]
-offset_left = 545.0
-offset_top = 11.0
-offset_right = 609.0
-offset_bottom = 34.0
-text = "0:00
 "
 
 [node name="Money" type="Label" parent="."]
-offset_left = 966.0
-offset_top = 8.0
-offset_right = 1028.0
-offset_bottom = 31.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -62.0
+offset_bottom = 23.0
+grow_horizontal = 0
 text = "Money: "

@@ -36,7 +36,7 @@ offset_right = 30.0
 offset_bottom = -25.0
 text = "00"
 
-[node name="DishSpawn" type="Marker2D" parent="."]
+[node name="DishSpot" type="Marker2D" parent="."]
 position = Vector2(0, 9)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

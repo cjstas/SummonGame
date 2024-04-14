@@ -12,11 +12,14 @@ var dishOnTable
 func _ready():
 	add_to_group("Interactable")
 	add_to_group("HeldInteractable")
+	add_to_group("Banishable")
 	#listeners
 	SignalController.try_grab.connect(_on_order_recieved)
 	SignalController.interact.connect(_on_interact)
 	SignalController.highlight.connect(_on_highlight)
 	SignalController.remove_table.connect(_on_order_accepted)
+	SignalController.kill_all_customers.connect(_on_die)
+	SignalController.banish.connect(_on_banish)
 	#Pick which side to set us on (currently only left because thats the only customer i made)
 	side = "Left"
 	
@@ -37,7 +40,7 @@ func _enter_tree():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -80,8 +83,16 @@ func _on_order_recieved(grabber, target):
 func _on_order_accepted(target):
 	if target == customer:
 		customer.queue_free()
-		queue_free()
+		_on_die()
 
 func _on_highlight(target, highlighted):
 	if target==self:
 		GlobalVariables.highlight(target, highlighted, $Table)
+
+func _on_banish(target):
+	if target == self:
+		_on_die()
+
+func _on_die():
+	SignalController.banish_table.emit()
+	queue_free()

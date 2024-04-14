@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvak3p8otgtw8"]
+
+[ext_resource type="Texture2D" uid="uid://2g4cp6xgf0if" path="res://assets/effects/Burger Particle.png" id="1_3dyom"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8md83"]
+lifetime_randomness = 0.06
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 20.0
+emission_ring_inner_radius = 0.0
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -10.0
+radial_accel_max = 10.0
+damping_min = 20.0
+damping_max = 20.0
+scale_min = 0.01
+scale_max = 0.2
+
+[node name="PortalEffect" type="GPUParticles2D"]
+position = Vector2(0, -1)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_8md83")
+texture = ExtResource("1_3dyom")
+lifetime = 4.0
+speed_scale = 2.29
+explosiveness = 0.04
+randomness = 0.22
+fixed_fps = 60

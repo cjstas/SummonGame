@@ -1,5 +1,8 @@
 extends Node
 
+#misc
+var difficultFactor = 1 #unimplemented
+
 #resources
 var Highlight = preload("res://assets/shaders/highlight.tres")
 var dishImages = { #string order name, string path to associated asset
@@ -10,7 +13,6 @@ var dishImages = { #string order name, string path to associated asset
 var money = 0
 
 #Orders
-var currentOrders = {} #string order name, int number of active orders
 var recipes = {} #string order name, dictonary {string material, int number}
 var materials = {} #material name, current number of this material
 
@@ -19,7 +21,7 @@ var timeLeft = 0
 
 
 #global functions
-func highlight(target, highlighted, sprite):
+func highlight(_target, highlighted, sprite):
 	if highlighted:
 		sprite.material = Highlight
 		return
@@ -28,4 +30,4 @@ func highlight(target, highlighted, sprite):
 
 #Debug items
 func _ready():
-	recipes["GremlinRoast"] = {"GremlinMats": 1}
+	recipes["GremlinRoast"] = {"GremlinMats": 5}
